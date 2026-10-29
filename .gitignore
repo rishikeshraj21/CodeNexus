@@ -1,0 +1,30 @@
+# Secrets and local environment files
+.env
+.env.*
+!.env.example
+
+# Java / Maven generated output
+**/target/
+*.class
+
+# Node dependencies and generated builds
+**/node_modules/
+**/dist/
+**/build/
+**/dist-ssr/
+
+# IDE settings
+.idea/
+.vscode/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated GitHub modernization-tool data
+.github/modernize/
+**/.github/modernize/

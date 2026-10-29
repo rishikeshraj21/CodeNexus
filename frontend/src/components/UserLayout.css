@@ -1,0 +1,684 @@
+.user-console,
+.user-console * {
+    box-sizing: border-box;
+}
+
+.user-console {
+    min-height: 100vh;
+    color: #111827;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(99, 102, 241, 0.1),
+            transparent 30%
+        ),
+        #f6f7fb;
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+.user-console-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 100;
+    display: flex;
+    width: 260px;
+    min-height: 100vh;
+    flex-direction: column;
+    padding: 26px 18px;
+    color: #fff;
+    background: #111827;
+}
+
+.user-console-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 10px 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.user-console-brand-mark {
+    display: flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    box-shadow: 0 10px 24px rgba(99, 102, 241, 0.3);
+    font-weight: 900;
+}
+
+.user-console-brand-title {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+}
+
+.user-console-brand-subtitle {
+    margin-top: 2px;
+    color: #9ca3af;
+    font-size: 9px;
+    letter-spacing: 1.7px;
+}
+
+.user-console-nav-label {
+    padding: 25px 12px 10px;
+    color: #9ca3af;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.user-console-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.user-console-nav-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 13px;
+    padding: 12px 13px;
+    border: 0;
+    border-radius: 10px;
+    color: #cbd5e1;
+    background: transparent;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+.user-console-nav-item > span {
+    width: 20px;
+    color: #9ca3af;
+    font-size: 16px;
+    text-align: center;
+}
+
+.user-console-nav-item:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.user-console-nav-item.active {
+    color: #fff;
+    background: linear-gradient(
+        135deg,
+        rgba(99, 102, 241, 0.95),
+        rgba(124, 58, 237, 0.92)
+    );
+    box-shadow: 0 8px 20px rgba(79, 70, 229, 0.2);
+}
+
+.user-console-nav-item.active > span {
+    color: #fff;
+}
+
+.user-console-sidebar-bottom {
+    display: grid;
+    gap: 14px;
+    margin-top: auto;
+    padding: 16px 7px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.user-console-account {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-console-avatar {
+    display: flex;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.user-console-account-copy {
+    display: grid;
+    min-width: 0;
+    gap: 3px;
+}
+
+.user-console-account-copy strong {
+    font-size: 12px;
+}
+
+.user-console-account-copy span {
+    overflow: hidden;
+    color: #9ca3af;
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-console-logout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 9px;
+    color: #fecaca;
+    background: rgba(239, 68, 68, 0.1);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.user-console-logout:hover {
+    color: #fff;
+    background: rgba(239, 68, 68, 0.22);
+}
+
+.user-console-main {
+    position: relative;
+    width: calc(100% - 260px);
+    min-height: 100vh;
+    margin-left: 260px;
+    padding: 36px 36px 50px;
+}
+
+.user-console-header {
+    display: flex;
+    min-height: 76px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 0 auto 26px;
+    max-width: 1440px;
+}
+
+.user-console-heading {
+    display: block;
+}
+
+.user-console-back {
+    position: absolute;
+    top: 10px;
+    left: 36px;
+    display: inline-flex;
+    min-height: 28px;
+    align-items: center;
+    gap: 5px;
+    padding: 0 8px;
+    border: 1px solid #e5e6eb;
+    border-radius: 7px;
+    color: #4b5563;
+    background: #fff;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.user-console-back:hover {
+    border-color: #c7d2fe;
+    color: #4f46e5;
+    background: #eef2ff;
+}
+
+.user-console-back > span {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.user-console-eyebrow {
+    color: #6366f1;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.user-console-header h1 {
+    margin: 7px 0 0;
+    color: #111827;
+    font-size: clamp(25px, 3vw, 34px);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+
+.user-console-header-user {
+    position: absolute;
+    top: 28px;
+    right: 36px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 9px;
+    border: 1px solid #e5e6eb;
+    border-radius: 10px;
+    color: inherit;
+    background: #fff;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.user-console-header-user:hover {
+    border-color: #c7d2fe;
+    background: #f8f7ff;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1);
+}
+
+.user-console-header-user:focus-visible {
+    outline: 3px solid #a78bfa;
+    outline-offset: 3px;
+}
+
+.user-console-header-user .user-console-avatar {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+    font-size: 11px;
+}
+
+.user-console-header-user > div:last-child {
+    display: grid;
+    gap: 2px;
+}
+
+.user-console-header-user strong {
+    color: #111827;
+    font-size: 11px;
+}
+
+.user-console-header-user span {
+    color: #737785;
+    font-size: 10px;
+}
+
+.user-console-content {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.user-console-content .dashboard-navbar,
+.user-console-content .navbar,
+.user-console-content .problem-topbar {
+    display: none;
+}
+
+.user-console-content .dashboard-main {
+    width: 100%;
+    padding-top: 0;
+}
+
+.user-console-content .dashboard-page,
+.user-console-content .problems-page,
+.user-console-content .problem-page,
+.user-console-content .submissions-page,
+.user-console-content .submission-page,
+.user-console-content .profile-page,
+.user-console-content .leaderboard-page {
+    min-height: 0;
+    background: transparent;
+}
+
+.user-console-content .problems-container,
+.user-console-content .leaderboard-container {
+    width: 100%;
+}
+
+@media (max-width: 760px) {
+    .user-console-sidebar {
+        position: sticky;
+        inset: 0 0 auto;
+        width: 100%;
+        min-height: 0;
+        padding: 12px 14px 10px;
+    }
+
+    .user-console-brand {
+        gap: 9px;
+        padding: 0 4px 10px;
+    }
+
+    .user-console-brand-mark {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        font-size: 12px;
+    }
+
+    .user-console-brand-title {
+        font-size: 16px;
+    }
+
+    .user-console-brand-subtitle,
+    .user-console-nav-label,
+    .user-console-sidebar-bottom {
+        display: none;
+    }
+
+    .user-console-nav {
+        flex-direction: row;
+        gap: 6px;
+        overflow-x: auto;
+        padding-top: 9px;
+        scrollbar-width: none;
+    }
+
+    .user-console-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .user-console-nav-item {
+        width: auto;
+        flex: 0 0 auto;
+        gap: 7px;
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+
+    .user-console-nav-item > span {
+        width: auto;
+        font-size: 14px;
+    }
+
+    .user-console-main {
+        width: 100%;
+        min-height: calc(100vh - 100px);
+        margin-left: 0;
+        padding: 48px 14px 32px;
+    }
+
+    .user-console-back {
+        top: 8px;
+        left: 14px;
+    }
+
+    .user-console-header {
+        min-height: 58px;
+        margin-bottom: 18px;
+    }
+
+    .user-console-header-user {
+        display: none;
+    }
+
+    .user-console-content .dashboard-main {
+        padding-top: 0;
+    }
+}
+
+.user-console {
+    --console-ink: #111827;
+    --console-muted: #64748b;
+    --console-border: #e5eaf2;
+    background:
+        radial-gradient(ellipse at 88% 0, rgba(99, 102, 241, 0.055), transparent 35%),
+        #f5f7fb;
+    color: var(--console-ink);
+}
+
+.user-console-sidebar {
+    border-right: 1px solid #e6eaf1;
+    color: #334155;
+    background: #fff;
+    box-shadow: 8px 0 28px rgba(15, 23, 42, 0.025);
+}
+
+.user-console-brand {
+    border-bottom-color: #edf0f5;
+}
+
+.user-console-brand-mark {
+    color: #fff;
+    background: linear-gradient(145deg, #4f46e5, #6366f1 70%, #22d3ee);
+    box-shadow: 0 8px 18px rgba(79, 70, 229, 0.22);
+}
+
+.user-console-brand-title {
+    color: #111827;
+}
+
+.user-console-brand-subtitle,
+.user-console-nav-label {
+    color: #94a3b8;
+}
+
+.user-console-nav-item {
+    color: #526076;
+}
+
+.user-console-nav-item > svg {
+    flex: 0 0 20px;
+    color: #94a3b8;
+}
+
+.user-console-nav-item:hover {
+    color: #312e81;
+    background: #f5f6ff;
+}
+
+.user-console-nav-item:hover > svg {
+    color: #6366f1;
+}
+
+.user-console-nav-item.active {
+    color: #4338ca;
+    background: #eef2ff;
+    box-shadow: inset 3px 0 #4f46e5;
+}
+
+.user-console-nav-item.active > svg {
+    color: #4f46e5;
+}
+
+.user-console-sidebar-bottom {
+    border-top-color: #edf0f5;
+}
+
+.user-console-avatar {
+    color: #4338ca;
+    background: linear-gradient(145deg, #e0e7ff, #cffafe);
+}
+
+.user-console-account-copy strong {
+    overflow: hidden;
+    color: #1e293b;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-console-account-copy span {
+    color: #8491a5;
+}
+
+.user-console-logout {
+    color: #b42332;
+    background: #fff4f3;
+}
+
+.user-console-logout:hover {
+    color: #9f1239;
+    background: #ffe8e6;
+}
+
+.user-console-main {
+    padding-top: 31px;
+}
+
+.user-console-header {
+    position: relative;
+    min-height: 80px;
+    margin-bottom: 25px;
+    padding: 0 0 16px;
+    border-bottom: 1px solid #e8ecf3;
+}
+
+.user-console-heading {
+    display: block;
+    padding-top: 12px;
+}
+
+.user-console-back {
+    top: -20px;
+    left: 0;
+    min-height: 25px;
+    padding: 0 7px;
+    border-color: transparent;
+    color: #667085;
+    background: transparent;
+}
+
+.user-console-back:hover {
+    border-color: #e0e7ff;
+    color: #4338ca;
+    background: #eef2ff;
+}
+
+.user-console-eyebrow {
+    color: #6366f1;
+}
+
+.user-console-header h1 {
+    color: #111827;
+    font-size: clamp(24px, 2.3vw, 31px);
+}
+
+.user-console-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.user-console-header-user {
+    position: static;
+    padding: 6px 10px 6px 6px;
+    border-color: #e8ecf3;
+    background: rgba(255, 255, 255, 0.86);
+}
+
+.user-console-header-user:hover {
+    border-color: #c7d2fe;
+    background: #fff;
+    box-shadow: 0 5px 16px rgba(79, 70, 229, 0.08);
+}
+
+.user-console-header-user .user-console-avatar {
+    color: #fff;
+    background: linear-gradient(145deg, #4f46e5, #6366f1);
+}
+
+.user-console-header-user strong {
+    color: #1e293b;
+    font-size: 12px;
+}
+
+.user-console-header-user span {
+    color: #8491a5;
+}
+
+.user-console-mobile-logout {
+    display: none;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e8ecf3;
+    border-radius: 10px;
+    color: #64748b;
+    background: #fff;
+}
+
+.user-console-mobile-logout:hover {
+    border-color: #fecaca;
+    color: #b42332;
+    background: #fff4f3;
+}
+
+@media (max-width: 760px) {
+    .user-console-sidebar {
+        border-right: 0;
+        border-bottom: 1px solid #e6eaf1;
+        box-shadow: 0 5px 18px rgba(15, 23, 42, 0.035);
+    }
+
+    .user-console-nav-item.active {
+        box-shadow: inset 0 -2px #4f46e5;
+    }
+
+    .user-console-main {
+        min-height: calc(100vh - 108px);
+        padding-top: 38px;
+    }
+
+    .user-console-header {
+        min-height: 64px;
+        padding-bottom: 12px;
+    }
+
+    .user-console-heading {
+        padding-top: 13px;
+    }
+
+    .user-console-header-user {
+        display: flex;
+    }
+
+    .user-console-header-user > div:last-child,
+    .user-console-header-user span {
+        display: none;
+    }
+
+    .user-console-header-user {
+        padding: 4px;
+        border: 0;
+        background: transparent;
+    }
+
+    .user-console-mobile-logout {
+        display: inline-flex;
+    }
+}
+
+@media (max-width: 420px) {
+    .user-console-header-actions {
+        gap: 4px;
+    }
+
+    .user-console-header h1 {
+        font-size: 22px;
+    }
+
+    .user-console-main {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+}
