@@ -1,108 +1,251 @@
-# CodeNexus
+# CodeNexus — Online Coding and Assessment Platform
 
-CodeNexus is a coding practice and assessment platform built with a React/Vite frontend and a Spring Boot backend. It includes coding problems, submissions, learning quizzes, progress tracking, notifications, and administrative features.
+CodeNexus is a full-stack coding and assessment platform designed to help developers practice programming problems, submit solutions, track their progress, and prepare for technical interviews.
 
-## Technology stack
+The project combines a Spring Boot backend with a React frontend to provide coding practice, automated evaluation, quizzes, leaderboards, and interview preparation features.
 
-- Frontend: React, Vite, JavaScript
-- Backend: Java 21, Spring Boot, Maven
-- Database: MySQL
-- Code execution: Docker (Docker Desktop for local development)
+> **Project type:** Full-Stack Web Application  
+> **Status:** Under Development
+
+## Features
+
+### 👨‍💻 Coding Practice
+- Browse programming problems.
+- View problem details and test cases.
+- Submit coding solutions.
+- Track submissions and evaluation results.
+
+### ⚙️ Code Execution and Evaluation
+- Backend services for processing code submissions.
+- Test-case-based solution evaluation.
+- Docker-based code execution support.
+- Submission result tracking.
+
+**Note:** Supported programming languages and execution capabilities depend on the current implementation and configuration.
+
+### 📊 Dashboard and Progress Tracking
+- User dashboard.
+- Submission history.
+- Leaderboard.
+- Problem bookmarks.
+- Notifications.
+
+### 🎯 Interview Preparation
+- Interview preparation resources.
+- AI interview feature.
+- Quiz-based assessments.
+
+### 🛡️ Administration
+- Administrative dashboard.
+- Submission management.
+- User management.
+- Learning-content management.
+
+### 🔐 Authentication and Security
+- User registration and login.
+- JWT-based authentication components.
+- Protected application routes.
+- Environment-based configuration for sensitive settings.
+
+## Technology Stack
+
+| Component | Technologies |
+|---|---|
+| Backend | Java, Spring Boot |
+| Frontend | React, JavaScript |
+| Frontend tooling | Vite, npm |
+| Database | MySQL |
+| Authentication | JWT |
+| Code execution | Docker-based execution support |
+| Build tool | Maven |
+| Development tools | VS Code, Git, GitHub |
+
+## Project Architecture
+
+```text
+CodeNexus/
+│
+├── backend/
+│   ├── src/main/java/com/codenexus/backend/
+│   │   ├── config/
+│   │   ├── controller/
+│   │   ├── dto/
+│   │   ├── entity/
+│   │   ├── executor/
+│   │   ├── repository/
+│   │   ├── security/
+│   │   └── service/
+│   │
+│   ├── src/main/resources/
+│   │   └── application.properties
+│   ├── src/test/
+│   ├── pom.xml
+│   └── mvnw.cmd
+│
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── lib/
+│   ├── package.json
+│   └── vite.config.js
+│
+├── .gitignore
+└── README.md
+```
 
 ## Prerequisites
 
-- Java 21
+Install the following before running the project:
+
+- Java Development Kit (JDK) 21
 - Node.js and npm
-- MySQL
-- Docker Desktop (for the code execution feature)
+- MySQL Server
+- Git
+- Docker Desktop, for the code-execution functionality
 
-## Local setup (Windows PowerShell)
+## Installation and Setup
 
-### 1. Create the database
+### 1. Clone the repository
 
-In MySQL, run:
+```powershell
+git clone https://github.com/rishikeshraj21/CodeNexus.git
+Set-Location CodeNexus
+```
+
+### 2. Create the MySQL database
+
+Open your MySQL client and run:
 
 ```sql
 CREATE DATABASE codenexus;
 ```
 
-### 2. Configure backend environment variables
+Ensure that your MySQL server is running.
 
-Open PowerShell in the project root and set the variables for the current terminal session. Replace the username and password with your own local MySQL credentials; do not commit them.
+### 3. Configure backend environment variables
+
+Open a PowerShell terminal in the project root and configure the database connection and JWT secret.
 
 ```powershell
 $env:DB_URL = "jdbc:mysql://localhost:3306/codenexus?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Kolkata"
+
 $env:DB_USERNAME = Read-Host "MySQL username"
+
 $securePassword = Read-Host "MySQL password" -AsSecureString
 $env:DB_PASSWORD = [System.Net.NetworkCredential]::new("", $securePassword).Password
 Remove-Variable securePassword
-$env:JWT_SECRET = [Convert]::ToBase64String([Security.Cryptography.RandomNumberGenerator]::GetBytes(48))
+
+$env:JWT_SECRET = [Convert]::ToBase64String(
+    [Security.Cryptography.RandomNumberGenerator]::GetBytes(48)
+)
 ```
 
-Keep this PowerShell session open while running the backend. The generated JWT secret is temporary for this session; existing tokens will no longer validate if the secret changes. For a persistent local setup, securely configure the environment variables in your own environment. Never commit real secrets.
+Keep this terminal open while running the backend. These environment variables apply to the current PowerShell session.
 
-### 3. Start the backend
+The generated JWT secret is temporary. Generating a different secret invalidates existing tokens signed with the previous secret.
 
-In the same PowerShell session:
+For persistent local development, configure the environment variables securely. Never commit actual passwords, tokens, or signing secrets.
+
+### 4. Start the backend
+
+In the same PowerShell terminal:
 
 ```powershell
-Set-Location .ackend
+Set-Location .\backend
 .\mvnw.cmd spring-boot:run
 ```
 
 The backend uses port `8080` by default.
 
-### 4. Start the frontend
+### 5. Start the frontend
 
 Open a second PowerShell terminal:
 
 ```powershell
-Set-Location .rontend
+Set-Location "C:\GitHubUpload\CodeNexus\frontend"
+
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite (typically `http://localhost:5173`). The frontend defaults to the API at `http://localhost:8080/api`. If needed, set the API URL before starting Vite:
+Open the local URL printed by Vite. It is typically:
+
+`http://localhost:5173`
+
+The frontend is configured to use the backend API at:
+
+`http://localhost:8080/api`
+
+If necessary, configure the API URL before starting Vite:
 
 ```powershell
 $env:VITE_API_BASE_URL = "http://localhost:8080/api"
 npm run dev
 ```
 
-### 5. Code execution
+### 6. Enable code execution
 
-Start Docker Desktop before using the code execution feature. The first execution may download the `eclipse-temurin:21` image.
+Start Docker Desktop before using the code-execution feature.
 
-## Verify builds
+The first execution may download the `eclipse-temurin:21` Docker image. Ensure Docker is running and that the application's Docker execution configuration is correct.
 
-Backend tests:
+## Verify the Build
+
+### Backend tests
+
+From the project root:
 
 ```powershell
-Set-Location .ackend
+Set-Location .\backend
 .\mvnw.cmd test
 ```
 
-Frontend lint and build (from the project root, in a separate terminal or after the backend command finishes):
+### Frontend lint and production build
+
+Open another terminal:
 
 ```powershell
-Set-Location .rontend
+Set-Location "C:\GitHubUpload\CodeNexus\frontend"
+
 npm install
 npm run lint
 npm run build
 ```
 
-## Security notes
+Resolve any build or test failures before describing the project as fully tested.
 
-- Database credentials and the JWT signing secret must be supplied through environment variables.
-- Do not commit `.env` files, passwords, tokens, private keys, or production database dumps.
-- The application does not provide a universal admin password in this repository. Configure admin access through the application's intended account/role management flow.
+## Security Considerations
 
-## Repository structure
+- Supply database credentials and JWT secrets through environment variables.
+- Never commit real passwords, API keys, private keys, or production database dumps.
+- Do not publish real user data.
+- Review the Docker execution configuration before exposing the application publicly.
+- Configure administrative access through the application's intended account and role-management flow.
 
-```text
-CodeNexus/
-├── backend/    # Spring Boot application
-├── frontend/   # React/Vite application
-├── .gitignore
-└── README.md
-```
+## Future Improvements
+
+Potential enhancements include:
+
+- Deployment with a production database.
+- Improved automated testing and CI/CD.
+- Additional coding languages and evaluation capabilities.
+- More detailed user analytics.
+- Application monitoring and logging.
+- Improved documentation and interface screenshots.
+
+These are potential improvements, not claims that they are already implemented.
+
+## Author
+
+**Rishikesh Raj**
+
+B.Tech Computer Science and Engineering
+
+GitHub: [rishikeshraj21](https://github.com/rishikeshraj21)
+
+## Repository
+
+[View CodeNexus on GitHub](https://github.com/rishikeshraj21/CodeNexus)
